@@ -1,7 +1,3 @@
-# 남대문 장보기 지도
+# (이동함) 남대문 장보기 지도
 
-남대문시장 수영·그릇·속옷·찜질사우나 가게 34곳 지도. 카카오맵 기반, 핀을 누르면 가게 설명과 길찾기.
-
-열기: https://zionfaith-k.github.io/namdaemun-map/
-
-가게 정보는 2026-10-01 네이버·유튜브 검색 기준.
+→ https://zionfaith-k.github.io/pin-map/#namdaemun
