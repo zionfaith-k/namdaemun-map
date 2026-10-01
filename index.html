@@ -142,9 +142,9 @@ let selected = null;
 let map = null;
 const esc = t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-// 같은 건물(약 10m 안) 가게를 한 핀으로
+// 같은 건물(약 17m 안) 가게를 한 핀으로 — 휴대폰에서 핀이 겹쳐 눌리지 않게
 const groups = [];
-SHOPS.forEach(s=>{let g=groups.find(g=>Math.abs(g.lat-s.lat)<0.00009&&Math.abs(g.lng-s.lng)<0.00011);if(!g){g={id:"g"+groups.length,lat:s.lat,lng:s.lng,shops:[]};groups.push(g)}g.shops.push(s);s.g=g.id});
+SHOPS.forEach(s=>{let g=groups.find(g=>Math.abs(g.lat-s.lat)<0.00015&&Math.abs(g.lng-s.lng)<0.00019);if(!g){g={id:"g"+groups.length,lat:s.lat,lng:s.lng,shops:[]};groups.push(g)}g.shops.push(s);s.g=g.id});
 
 const shortName = s=>s.name.split(" (")[0];
 const routeUrl = s=>`https://map.kakao.com/link/to/${encodeURIComponent(shortName(s))},${s.lat},${s.lng}`;
@@ -235,7 +235,7 @@ function drawPins(){
   if(!map) return;
   groups.forEach(g=>{
     if(overlays[g.id]) overlays[g.id].setMap(null);
-    overlays[g.id] = new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(g.lat,g.lng),content:pinEl(g),xAnchor:0,yAnchor:0,zIndex:selected===g.id?10:1,clickable:true});
+    overlays[g.id] = new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(g.lat,g.lng),content:pinEl(g),xAnchor:0,yAnchor:0,zIndex:selected===g.id?100:g.shops.length,clickable:true});
     overlays[g.id].setMap(map);
   });
 }
